@@ -69,8 +69,37 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
         presentAddress: {type: String, requied: true},
         permanentAddress: {type: String, requied: true}
     });
+
+
+    //3. Create a model---------------
+    const User = model('users', userSchema);
+
+    const getDb = async() => {
+        const user = new User({
+            id: '34335',
+            role: "Student",
+            password: 'Ashik',
+            name: {
+                firstName: 'Ashikul',
+                middleName: 'Islam',
+                lastName: 'Atikul',
+            },
+            dateOfBirth: '23/05/2023',
+            gender: "male",
+            email: 'abc@gmail.com',
+            contactNo: '000000000',
+            emergencyContact: '4444444',
+            presentAddress: 'Khulna',
+            permanentAddress: 'Lohagara',
+        });
+        await user.save();
+        console.log(user);
+    }
+
+    getDb();
+
     //-----------------
-  })
+  });
 
   export default app;
   
